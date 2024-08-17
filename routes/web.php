@@ -19,6 +19,8 @@ Route::middleware('auth')->group(function () {
 });
 
 Route::middleware('auth')->group(function () {
+    Route::get('/room/create', [RoomController::class, 'create']);
+    Route::post('/room/create', [RoomController::class, 'store']);
     Route::get('/room/{room}', [RoomController::class, 'show']);
 });
 

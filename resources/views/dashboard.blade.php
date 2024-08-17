@@ -1,7 +1,9 @@
 <x-app-layout>
     <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
-            {{ __('Classrooms') }}
+        <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight flex justify-between item-center">
+           <span> {{ __('Classrooms') }}</span>
+
+            <a href="/room/create" class="text-white p-1 border rounded bg-gray-900 text-sm font-bold">Create room</a>
         </h2>
     </x-slot>
     {{-- wrapper --}}
@@ -41,11 +43,13 @@
 
             @foreach ($rooms as $room)
                 {{-- class --}}
-                <a href="/room/{{ $room->id }}"
-                    class="flex bg-gray-800 mb-24 flex-col p-2  gap-3 w-full rounded-sm border">
+                <div
+                    class="flex rounded-md  bg-gray-800 mb-24 flex-col p-2  gap-3 w-full border">
+
+                  
 
                     {{-- creator --}}
-                    <div class="flex items-center gap-3">
+                    <div class="flex items-center gap-3 ">
                         <span
                             class="w-8 h-8 rounded-full text-white bg-slate-400 text-center items-center justify-center font-bold">
                             {{ substr($room->user->email, 0, 2) }}
@@ -60,19 +64,24 @@
                             </span>
                         </div>
 
+                        <span class="text-sm font-semibold self-start ml-24 text-gray-400">
+                            {{ $room->created_at }}
+
+        
+                        </span>
+
+
                     </div>
 
                     {{-- desc --}}
 
-                    <div class="flex flex-col gap-3 pl-3">
+                    <a href="/room/{{ $room->id }}" class="flex flex-col gap-3 pl-3">
 
-                        <h1 class="text-lg font-semibold text-white p-2">
-                            {{ $room->topic }}
-                        </h1>
+                     
 
                         <p class="text-base font-semibold text-white">{{ $room->description }}</p>
 
-                    </div>
+                    </a>
 
                     <hr>
                     {{-- created & join --}}
@@ -80,14 +89,23 @@
                     <div class="flex items-center justify-between px-3">
 
 
-                        <span class="text-sm font-semibold text-gray-400"> {{ count($room->users) }} join</span>
-                        <span class="text-sm font-semibold text-gray-400">
-                            {{ $room->created_at }}
-                        </span>
+                        <span class="text-xs font-semibold text-gray-400"> 
+                            {{ count($room->users) }} Joined
 
+                        </span>
+    
+                        {{--  --}}
+
+                        <h1 class="p-2 text-gray-300 bg-gray-700 text-sm font-semibold rounded-lg">
+                            {{ $room->topic }}
+                        </h1>
+
+                        
+                  
                     </div>
 
-                </a>
+
+                </div>
             @endforeach
 
 
