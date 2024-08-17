@@ -97,7 +97,7 @@
 
         {{-- recent --}}
 
-        <div class="flex flex-1 max-w-sm:hidden"></div>
+        <div class="hidden flex-1 md:flex"></div>
 
 
     </div>

@@ -22,6 +22,6 @@ class RoomController extends Controller
     {
         $single_room = Room::with('users', 'user', 'message')->find($room->id);
 
-        return view('room.show', [ 'room' => $single_room]);
+        return view('room.show', [ 'room' => $single_room, 'room_id' => $room->id]);
     }
 }
